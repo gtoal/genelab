@@ -5,7 +5,7 @@ A fast de novo Overlap-Layout-Consensus DNA assembler in C. Single machine or cl
 Download the .c files and the Makefile.<br/>
 Install an MPI suite if not done already: <tt>sudo apt install libmpich-dev</tt> may be sufficient.<br/>
 Type <tt>make</tt><br/>
-Experiment with your .fastq files of shotgun DNA reads. Commands are <a href="#commands">below.</a><br/>
+Experiment with your .fastq files of shotgun DNA reads. Commands are below.<br/>
 <hr>
 
 # The LONG README
