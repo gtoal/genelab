@@ -334,8 +334,8 @@ the data to future-proof the software.  True, we do waste 25% of RAM that way, b
 
 ## The software  
 Here are the programs we were using when our project was complete and we mothballed
-the sources.  There is some earlier code and a few ancilliary utilities in the 'old'
-subdirectory. The links below take you to prettified html versions of the code - the
+the sources.  There is some earlier code and a few ancilliary utilities in the <a href="https://gtoal.com/genelab/old/old/">old</a>
+subdirectory on my web server. The links below take you to prettified html versions of the code - the
 raw C code is downloadable from the file listing at the top of this page (currently http://gtoal.com/genelab/ )
 <ul>
 <li><a href="http://gtoal.com/genelab/.html/maketrie.c.html">maketrie</a>: This builds the trie data structure and and index back into the file of raw k-mer reads.  By pre-building these data structures, all subsequent lookups (eg for contig building) are fast.<br/>
