@@ -164,10 +164,13 @@ in a supercomputer cluster.  True, we don't take much advantage of CPU paralleli
 basically only one core in the whole cluster is doing useful work at any one time -
 but that doesn't matter.  The problem is RAM-limited, not CPU-limited.
 
-(That said, we do a little opportunistic CPU parallelism when we can, but it never
-gives one of those 'order of magnitude' wins that the overall system design achieves,
-and it risks making the code less obvious to understand, so it is only done when
-the parallelism does not add to the complexity of the code.)
+(That said, we initially did a little opportunistic CPU parallelism (using the
+"OMP" compiler options) where we could, in maketrie and find-overlap, but it never
+gave one of those 'order of magnitude' wins that the overall system design achieved,
+and risked making the code less obvious to understand, so it was only done when
+the parallelism did not add to the complexity of the code and actually I think it
+may have subsequently been removed. It's the sort of optimisation you put back in only
+once development is complete and users start asking for a little more speed)
 
 This algorithm makes it possible to sequence huge (human-sized) genomes extremely
 quickly, depending on how many cluster machines and consequently how much RAM you
@@ -335,7 +338,9 @@ the sources.  There is some earlier code and a few ancilliary utilities in the '
 subdirectory. The links below take you to prettified html versions of the code - the
 raw C code is downloadable from the file listing at the top of this page (currently http://gtoal.com/genelab/ )
 <ul>
-<li><a href="http://gtoal.com/genelab/.html/maketrie.c.html">maketrie</a>: This builds the trie data structure and and index back into the file of raw k-mer reads.  By pre-building these data structures, all subsequent lookups (eg for contig building) are fast.<br/><tt>syntax: maketrie input.fastq</tt></li>
+<li><a href="http://gtoal.com/genelab/.html/maketrie.c.html">maketrie</a>: This builds the trie data structure and and index back into the file of raw k-mer reads.  By pre-building these data structures, all subsequent lookups (eg for contig building) are fast.<br/>
+<a href="https://gtoal.com/genelab/.html/maketrie-stampede.c.html">This version</a> of Maketrie includes a lot more comments - it is an html file structured using "folds" so you can drill down to specific areas you are interested in.  Functionally it should be the same as the stripped version. (There were so many more comments than code that paradoxically it was getting harder to maintain the C source because of the comments!)
+<tt>syntax: maketrie input.fastq</tt></li>
 <li><a href="http://gtoal.com/genelab/.html/findoverlaps.c.html">findoverlaps</a>: this takes a file of k-mer reads which have been converted into trie form and locates all
 the overlaps between all the k-mers and outputs the results in a file of overlap information.  It can be compiled
 to use a simple internal format or to write out the same format that the AMOS suite accepts.  Maketrie and findoverlaps can be combined into a single program - we just kept them separate at first to speed up the software development cycle when only working on one of the two components.<br/><tt>syntax: findoverlaps input.fastq</tt></li>
