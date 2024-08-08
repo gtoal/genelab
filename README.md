@@ -223,7 +223,7 @@ the comparion string being slid aross the known strings one position at a time.
 Done naively, the determination of all overlaps is
 N<sup>2</sup> where N is the number of reads.  But with the trie data structure, the algorithmic complexity
 is linear in N and proportional to L where L is the length of a read. (70, in our example, although because we reject overlaps
-of less that 14 characters, really L=56).
+of less than 14 characters, really L=56).
 
 It may not be obvious how N<sup>2</sup> complexity turns into N complexity... the answer is because the N<sup>2</sup>
 is really N<sup>2</sup> in space <em>and</em> time, not just time.  And by using the trie data structure
